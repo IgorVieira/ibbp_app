@@ -4,16 +4,43 @@ import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import AudioScreen from "../screens/AudioScreen";
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import SearchScreen from '../screens/SearchScreen';
+import EventsScreen from '../screens/EventsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+
+
+const AudioStack = createStackNavigator({
+  Audio: AudioScreen,
+});
+
+AudioStack.navigationOptions = {
+  tabBarLabel: 'Audio',
+  tabBarOptions: {
+    activeTintColor: '#000',
+  },
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-mic${focused ? '' : '-outline'}`
+          : 'md-mic'
+      }
+    />
+  ),
+};
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'Início',
+  tabBarOptions: {
+    activeTintColor: '#000',
+  },
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -26,26 +53,50 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const SearchStack = createStackNavigator({
+  Search: SearchScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Infos',
+SearchStack.navigationOptions = {
+  tabBarLabel: 'Buscar',
+  tabBarOptions: {
+    activeTintColor: '#000',
+  },
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={Platform.OS === 'ios' ? `ios-search${focused ? '' : '-outline'}` : 'md-search'}
     />
   ),
 };
+
+const Events = createStackNavigator({
+  Event: EventsScreen,
+});
+
+Events.navigationOptions = {
+  tabBarLabel: 'Eventos',
+  tabBarOptions: {
+    activeTintColor: '#000',
+  },
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-calendar${focused ? '' : '-outline'}` : 'md-calendar'}
+    />
+  ),
+};
+
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+  tabBarLabel: 'Config',
+  tabBarOptions: {
+    activeTintColor: '#000',
+  },
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -56,6 +107,8 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  AudioStack,
+  SearchStack,
   SettingsStack,
+  Events,
 });

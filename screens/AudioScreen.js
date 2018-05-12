@@ -1,16 +1,18 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoConfigView } from '@expo/samples';
+import { ExpoLinksView } from '@expo/samples';
 
-export default class SettingsScreen extends React.Component {
+export default class AudioScreen extends React.Component {
   static navigationOptions = {
-    title: 'Configurações'
+    headerTitleStyle: { alignSelf: 'center' },
+    title: 'Audios',
   };
 
   render() {
     return (
       <ScrollView style={styles.container}>
-        
+        {/* Go ahead and delete ExpoLinksView and replace it with your
+           * content, we just wanted to provide you with some helpful links */}
       </ScrollView>
     );
   }
